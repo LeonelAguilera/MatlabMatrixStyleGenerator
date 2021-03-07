@@ -1,6 +1,17 @@
 function output = MatrixatorAnimVideo(ResX,ResY,TrailLen,colorA,colorB,nFrames,varargin)
 nVarargin = nargin - 6; % Dimension of varargin.
                         % Change so that for a given number of arguments, nVarargin has the correct value.
+% Checks:
+if exist("Charloader", "File") ~= 2 % Stop if CharLoader is not found
+    disp("Error. Cannot find Charloader script.");
+    return;
+end
+if nFrames>999 % Stop if user wants too many frames
+    disp("Error. Name parsing for frames higher than 999 isn't currently supported");
+    return;
+end
+
+% End of checks
 
 % pause(5)
 colorA = rgb2hsv(colorA);
@@ -15,11 +26,6 @@ for i=1:(nVarargin)
         easterEggs{i,2} = round(ResX*rand(1));
     end
     easterEggs{i,3} = round(ResY*rand(1));
-end
-
-if exist("Charloader", "File") ~= 2 % Stop if CharLoader is not found
-    disp("Error. Cannot find Charloader script.");
-    return;
 end
 
 characters = CharLoader();
@@ -145,9 +151,13 @@ for frame = 2:nFrames
     output = hsv2rgb(output);
     subplot(1,1,1);
     imshow(output)
+    
+    % Creating frames with a consistent name, ordered in directory
     if frame < 10
+        name = "Frame_00"+frame+".png";
+    elseif frame < 100
         name = "Frame_0"+frame+".png";
-    else
+    elseif frame < 1000
         name = "Frame_"+frame+".png";
     end
     imwrite(output,name);
