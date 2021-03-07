@@ -1,11 +1,14 @@
-function output = MatrixatorAnimVideo(ResX,ResY,TrailLen,colorA,colorB,varargin)
+function output = MatrixatorAnimVideo(ResX,ResY,TrailLen,colorA,colorB,nFrames,varargin)
+nVarargin = nargin - 6; % Dimension of varargin.
+                        % Change so that for a given number of arguments, nVarargin has the correct value.
+
 % pause(5)
 colorA = rgb2hsv(colorA);
 colorB = rgb2hsv(colorB);
 step = 1/TrailLen;
 coordinates = meshgrid(1:ResY,1:ResX)';
 easterEggs = cell(nargin,3);
-for i=1:(nargin-5)
+for i=1:(nVarargin)
     easterEggs{i,1} = double(varargin{i});
     easterEggs{i,2} = round(ResX*rand(1));
     while(easterEggs{i,2}+size(easterEggs{i,2},2) >= ResX-10)
@@ -53,7 +56,7 @@ ShadowMap(coordinates>Index+1) = 0;
 
 letters = round((126-33)*rand(ResY,ResX))+33;
 
-for i=1:(nargin-5)
+for i=1:(nVarargin)
     letters(easterEggs{i,3},easterEggs{i,2}+1:easterEggs{i,2}+size(easterEggs{i,1},2)) = easterEggs{i,1};
 end
 
@@ -86,7 +89,7 @@ output = hsv2rgb(output);
 imshow(output)
 pause(0.1);
 
-for frame = 2:200
+for frame = 2:nFrames
     lineStart = Index*step-frame*step;
     lineEnd   = lineStart + step*(ResY-1);
     
@@ -100,7 +103,7 @@ for frame = 2:200
     letters(2:ResY,:) = letters(1:ResY-1,:);
     letters(1,:) = round((126-33)*rand(1,ResX))+33;
     
-    for i=1:(nargin-5)
+    for i=1:(nVarargin)
         letters(mod(easterEggs{i,3}+frame,ResY)+1,easterEggs{i,2}+1:easterEggs{i,2}+size(easterEggs{i,1},2)) = easterEggs{i,1};
         ShadowMap(mod(easterEggs{i,3}+frame,ResY)+1,easterEggs{i,2}+1:easterEggs{i,2}+size(easterEggs{i,1},2)) = min(ShadowMap(mod(easterEggs{i,3}+frame,ResY)+1,easterEggs{i,2}+1:easterEggs{i,2}+size(easterEggs{i,1},2)),1);
     end
@@ -150,7 +153,7 @@ for frame = 2:200
     pause(0.1);
 end
 
-for i=1:(nargin-5)
+for i=1:(nVarargin)
     disp("x: "+easterEggs{i,2})
     disp("y: "+easterEggs{i,3})
     H(mod(easterEggs{i,3}+frame,ResY)+1,easterEggs{i,2}+1:easterEggs{i,2}+size(easterEggs{i,1},2)) = 0;
