@@ -160,7 +160,7 @@ for frame = 2:nFrames
     elseif frame < 1000
         name = "Frame_"+frame+".png";
     end
-    imwrite(output,name);
+    imwrite(output,"Rendered_imgs\"+name);
     pause(0.1);
 end
 
