@@ -14,6 +14,11 @@ for i=1:(nargin-5)
     easterEggs{i,3} = round(ResY*rand(1));
 end
 
+if exist("Charloader", "File") ~= 2 % Stop if CharLoader is not found
+    disp("Error. Cannot find Charloader script.");
+    return;
+end
+
 characters = CharLoader();
 
 % logo = 1-imresize(double(imread("Logo.png"))./255,[9*ResY,7*ResX]);
