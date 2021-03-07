@@ -7,11 +7,11 @@ coordinates = meshgrid(1:ResY,1:ResX)';
 easterEggs = cell(nargin,3);
 for i=1:(nargin-5)
     easterEggs{i,1} = double(varargin{i});
-    easterEggs{i,2} = round(ResX*rand(1));
+    easterEggs{i,2} = ceil(ResX*rand(1));
     while(easterEggs{i,2}+size(easterEggs{i,2},2) >= ResX-10)
-        easterEggs{i,2} = round(ResX*rand(1));
+        easterEggs{i,2} = ceil(ResX*rand(1));
     end
-    easterEggs{i,3} = round(ResY*rand(1));
+    easterEggs{i,3} = ceil(ResY*rand(1));
 end
 
 characters = CharLoader();
@@ -127,8 +127,8 @@ for frame = 2:200
     %     V = V.*logo;
     V = min(V+(1-logo).*(1-whitemap),1);
     
-    output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo),'nearest').*whitemap+(220/360).*(1-whitemap);
-    output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo),'nearest');%.*whitemap;
+    output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo),'nearest');%.*whitemap+(220/360).*(1-whitemap);
+    output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo),'nearest');%.*(1-whitemap);
     output(:,:,3) = V;
     
     output = hsv2rgb(output);
