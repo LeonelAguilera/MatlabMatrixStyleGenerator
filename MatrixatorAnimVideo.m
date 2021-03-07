@@ -34,6 +34,7 @@ desde = desde(:,:,1);
 abajo = double(imread("Abajo.png"))./255;
 abajo = abajo(:,:,1);
 
+% Mentioned logo, probably copy for other words
 whitemap = ones(size(logo));
 
 disp(size(characters{32}))
@@ -73,7 +74,7 @@ V = kron(ShadowMap,ones(9,7));
 
 
 V = V.*CharMap;
-V = imresize(V,size(logo));
+V = imresize(V,size(logo)); % Mentioned logo, probably copy for other words
 
 V = V.*logo;
 
@@ -124,18 +125,18 @@ for frame = 2:nFrames
     
     %     H = imresize(H,size(logo));
     %     S = imresize(S,size(logo));
-    V = imresize(V,size(logo));
+    V = imresize(V,size(logo)); % Mentioned logo, probably copy for other words
     
 %     V = V.*logo;
     
     pre = zeros(size(V));
     pre(V>0.5)=1;
-    whitemap = max(whitemap - pre.*(1-logo),0);
+    whitemap = max(whitemap - pre.*(1-logo),0); % Mentioned logo, probably copy for other words
 %     subplot(1,2,2);
 %     imshow(whitemap)
     
 %     V = V.*logo;
-    V = min(V+(1-logo).*(1-whitemap),1);
+    V = min(V+(1-logo).*(1-whitemap),1); % Mentioned logo, probably copy for other words
     
     output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo)).*whitemap+(220/360).*(1-whitemap);
     output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo));%.*whitemap;
