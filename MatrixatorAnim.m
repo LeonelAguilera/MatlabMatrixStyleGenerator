@@ -3,7 +3,7 @@ function output = MatrixatorAnim(ResX,ResY,TrailLen,colorA,colorB,varargin)
 colorA = rgb2hsv(colorA);
 colorB = rgb2hsv(colorB);
 step = 1/TrailLen;
-easterEggs = cell(nargin,3);
+easterEggs = cell(nargin,3); % Sidenote: nargin is Number of ARGuments INput
 for i=1:(nargin-5)
     easterEggs{i,1} = double(varargin{i});
     easterEggs{i,2} = round(ResX*rand(1));
@@ -12,6 +12,12 @@ for i=1:(nargin-5)
     end
     easterEggs{i,3} = round(ResY*rand(1));
 end
+
+if exist("Charloader", "File") ~= 2 % Stop if CharLoader is not found
+    disp("Error. Cannot find Charloader script.");
+    return;
+end
+
 characters = CharLoader();
 disp(size(characters{32}))
 disp(size(characters{33}))
