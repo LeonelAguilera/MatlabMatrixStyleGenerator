@@ -3,8 +3,8 @@
 # Exclude folder with character .png's
 /Caracteres/
 
-# Exclude all png's until folder "export" is created
-*.png
+# Exclude Rendered_imgs
+/Rendered_imgs/
 
 # Retrieved from: https://github.com/github/gitignore/blob/master/Global/MATLAB.gitignore
 # Windows default autosave extension
