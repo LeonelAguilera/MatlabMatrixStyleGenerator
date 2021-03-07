@@ -10,6 +10,16 @@ if nFrames>999 % Stop if user wants too many frames
     disp("Error. Name parsing for frames higher than 999 isn't currently supported");
     return;
 end
+if (exist("Rendered_imgs", "dir")~=7)
+    disp("Message. 'Rendered_imgs' isn't in current folder. Creatinf folder...");
+    [status, msg] = mkdir("Rendered_imgs");
+    if status==0 % This means folder couldn't be created
+        disp("Error. Cannot create folder.");
+        disp(msg);
+        return;
+    end
+    disp(msg);
+end
 
 % End of checks
 
