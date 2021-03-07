@@ -28,12 +28,9 @@ abajo = abajo(:,:,1);
 
 whitemap = ones(size(logo));
 
-disp(size(characters{32}))
-disp(size(characters{33}))
 ShadowMap = rand(ResY,ResX);
 [~,Index] = max(ShadowMap);
 Index = Index - TrailLen*ceil(Index./TrailLen);
-disp(Index);
 % disp(min(max(Index+1,1),ResY))
 % disp(min(max(Index+2,1),ResY))
 % disp(min(max(Index+10,1),ResY))
@@ -69,8 +66,8 @@ V = imresize(V,size(logo));
 
 V = V.*logo;
 
-output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo));
-output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo));
+output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo),'nearest');
+output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo),'nearest');
 output(:,:,3) = V;
 
 % output(:,:,1) = kron(H,ones(9,7));
@@ -119,19 +116,19 @@ for frame = 2:200
     %     S = imresize(S,size(logo));
     V = imresize(V,size(logo));
     
-%     V = V.*logo;
+    %     V = V.*logo;
     
     pre = zeros(size(V));
-    pre(V>0.5)=1;
+    pre(V>0)=1;
     whitemap = max(whitemap - pre.*(1-logo),0);
-%     subplot(1,2,2);
-%     imshow(whitemap)
+    %     subplot(1,2,2);
+    %     imshow(whitemap)
     
-%     V = V.*logo;
+    %     V = V.*logo;
     V = min(V+(1-logo).*(1-whitemap),1);
     
-    output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo)).*whitemap+(220/360).*(1-whitemap);
-    output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo));%.*whitemap;
+    output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo),'nearest').*whitemap+(220/360).*(1-whitemap);
+    output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo),'nearest');%.*whitemap;
     output(:,:,3) = V;
     
     output = hsv2rgb(output);
@@ -151,14 +148,12 @@ for frame = 2:200
 end
 
 for i=1:(nargin-5)
-    disp("x: "+easterEggs{i,2})
-    disp("y: "+easterEggs{i,3})
     H(mod(easterEggs{i,3}+frame,ResY)+1,easterEggs{i,2}+1:easterEggs{i,2}+size(easterEggs{i,1},2)) = 0;
 end
 
-pause(10);
-output(:,:,1) = kron(H,ones(9,7));
-output(:,:,2) = kron(S,ones(9,7));
+pause(2);
+output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo)).*whitemap+(220/360).*(1-whitemap);
+output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo));%.*whitemap;
 output(:,:,3) = V;
 
 output = hsv2rgb(output);
