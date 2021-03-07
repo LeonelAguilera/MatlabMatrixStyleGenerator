@@ -80,6 +80,7 @@ output(:,:,3) = V;
 output = hsv2rgb(output);
 imshow(output)
 pause(0.1);
+imwrite(output,"Frame_0001.png");
 
 for frame = 2:200
     lineStart = Index*step-frame*step;
@@ -137,6 +138,10 @@ for frame = 2:200
     subplot(1,1,1);
     imshow(output)
     if frame < 10
+        name = "Frame_000"+frame+".png";
+    elseif frame < 100
+        name = "Frame_00"+frame+".png";
+    elseif frame < 1000
         name = "Frame_0"+frame+".png";
     else
         name = "Frame_"+frame+".png";
