@@ -18,9 +18,9 @@ if exist("Charloader", "File") ~= 2 % Stop if CharLoader is not found
     return;
 end
 
-characters = CharLoader();
-disp(size(characters{32}))
-disp(size(characters{33}))
+characters = CharLoader(); % Loading characters
+disp(size(characters{32})) % This should print "0 0"
+disp(size(characters{33})) % This should print "9 7"
 ShadowMap = rand(ResY,ResX);
 [~,Index] = max(ShadowMap);
 Index = Index - TrailLen*ceil(Index./TrailLen);
