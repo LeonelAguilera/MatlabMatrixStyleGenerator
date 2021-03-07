@@ -6,6 +6,9 @@
 # Exclude Rendered_imgs
 /Rendered_imgs/
 
+# Exclude BittyPixMonospace.png
+/BittyPixMonospace.png
+
 # Retrieved from: https://github.com/github/gitignore/blob/master/Global/MATLAB.gitignore
 # Windows default autosave extension
 *.asv
