@@ -3,7 +3,7 @@ function output = MatrixatorAnim(ResX,ResY,TrailLen,colorA,colorB,varargin)
 colorA = rgb2hsv(colorA);
 colorB = rgb2hsv(colorB);
 step = 1/TrailLen;
-easterEggs = cell(nargin,3);
+easterEggs = cell(nargin,3); % Sidenote: nargin is Number of ARGuments INput
 for i=1:(nargin-5)
     easterEggs{i,1} = double(varargin{i});
     easterEggs{i,2} = round(ResX*rand(1));
@@ -12,9 +12,15 @@ for i=1:(nargin-5)
     end
     easterEggs{i,3} = round(ResY*rand(1));
 end
-characters = CharLoader();
-disp(size(characters{32}))
-disp(size(characters{33}))
+
+if exist("Charloader", "File") ~= 2 % Stop if CharLoader is not found
+    disp("Error. Cannot find Charloader script.");
+    return;
+end
+
+characters = CharLoader(); % Loading characters
+disp(size(characters{32})) % This should print "0 0"
+disp(size(characters{33})) % This should print "9 7"
 ShadowMap = rand(ResY,ResX);
 [~,Index] = max(ShadowMap);
 Index = Index - TrailLen*ceil(Index./TrailLen);
