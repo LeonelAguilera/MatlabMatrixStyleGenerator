@@ -154,7 +154,7 @@ for frame = 2:nFrames
 %     V = V.*logo;
     
     pre = zeros(size(V));
-    pre(V>0.5)=1;
+    pre(V>0)=1;
     whitemap = max(whitemap - pre.*(1-logo),0); % Mentioned logo, probably copy for other words
 %     subplot(1,2,2);
 %     imshow(whitemap)
