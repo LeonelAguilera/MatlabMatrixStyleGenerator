@@ -111,11 +111,13 @@ output(:,:,3) = V;
 % output(:,:,3) = V;
 
 output = hsv2rgb(output);
+
+imwrite(output,export_folder+"Frame_0001.png");
+
 if showRendered
     imshow(output);
     pause(0.1);
 end
-
 
 for frame = 2:ceil(nFrames/3)
     lineStart = Index*step-frame*step;
@@ -429,4 +431,7 @@ if showRendered
     pause(0.1);
 end
 
+output = hsv2rgb(output);
+subplot(1,1,1);
+imshow(output)
 end
