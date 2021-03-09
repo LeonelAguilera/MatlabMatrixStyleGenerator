@@ -1,5 +1,5 @@
 function output = MatrixatorAnimVideo(ResX,ResY,TrailLen,colorA,colorB,nFrames,ratios,varargin)
-showRendered = true;
+showRendered = false;
 ratios = ratios./sum(ratios);
 nVarargin = nargin - 7; % Dimension of varargin.
                         % Change so that for a given number of arguments, nVarargin has the correct value.
@@ -440,6 +440,6 @@ if showRendered
     subplot(1,1,1);
     
     imshow(output);
-    pause(0.1);
 end
+
 end
