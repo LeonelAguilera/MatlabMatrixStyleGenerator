@@ -50,13 +50,13 @@ end
 characters = CharLoader();
 
 % logo = 1-imresize(double(imread("Logo.png"))./255,[9*ResY,7*ResX]);
-logo = (double(imread("Logo.png"))./255);
+logo = (double(imread("Logo9-16.png"))./255);
 logo = logo(:,:,1);
-internet = double(imread("Internet.png"))./255;
+internet = double(imread("Internet9-16.png"))./255;
 internet = internet(:,:,1);
-desde = double(imread("Desde.png"))./255;
+desde = double(imread("Desde9-16.png"))./255;
 desde = desde(:,:,1);
-abajo = double(imread("Abajo.png"))./255;
+abajo = double(imread("Abajo9-16.png"))./255;
 abajo = abajo(:,:,1);
 
 % Mentioned logo, probably copy for other words
@@ -113,7 +113,7 @@ output(:,:,3) = V;
 
 output = hsv2rgb(output);
 
-imwrite(output,export_folder+"Frame_0001.jpg");
+imwrite(output,export_folder+"/"+"Frame_0001.jpg");
 
 if showRendered
     imshow(output);
@@ -187,7 +187,7 @@ for frame = 2:ceil(nFrames*ratios(1))
         name = "Frame_"+frame;
     end
     name = name+".jpg";
-    imwrite(output,export_folder+name);
+    imwrite(output,export_folder+"/"+name);
     
     if showRendered
         imshow(output);
@@ -263,7 +263,7 @@ for frame = ceil(nFrames*ratios(1))+1:ceil(nFrames*sum(ratios(1:2)))
         name = "Frame_"+frame;
     end
     name = name+".jpg";
-    imwrite(output,export_folder+name);
+    imwrite(output,export_folder+"/"+name);
     
     if showRendered
         imshow(output);
@@ -339,7 +339,7 @@ for frame = ceil(nFrames*sum(ratios(1:2)))+1:ceil(nFrames*sum(ratios(1:3)))
         name = "Frame_"+frame;
     end
     name = name+".jpg";
-    imwrite(output,export_folder+name);
+    imwrite(output,export_folder+"/"+name);
 
     if showRendered
         imshow(output);
@@ -415,7 +415,7 @@ for frame = ceil(nFrames*sum(ratios(1:3))):ceil(nFrames)
         name = "Frame_"+frame;
     end
     name = name+".jpg";
-    imwrite(output,export_folder+name);
+    imwrite(output,export_folder+"/"+name);
     
     if showRendered
         imshow(output);
