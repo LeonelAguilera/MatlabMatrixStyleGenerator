@@ -112,7 +112,7 @@ output(:,:,3) = V;
 
 output = hsv2rgb(output);
 
-imwrite(output,export_folder+"Frame_0001.png");
+imwrite(output,export_folder+"Frame_0001.jpg");
 
 if showRendered
     imshow(output);
@@ -176,14 +176,15 @@ for frame = 2:ceil(nFrames/3)
     
     % Creating frames with a consistent name, ordered in directory
     if frame < 10
-        name = "Frame_000"+frame+".png";
+        name = "Frame_000"+frame;
     elseif frame < 100
-        name = "Frame_00"+frame+".png";
+        name = "Frame_00"+frame;
     elseif frame < 1000
-        name = "Frame_0"+frame+".png";
+        name = "Frame_0"+frame;
     else
-        name = "Frame_"+frame+".png";
+        name = "Frame_"+frame;
     end
+    name = name+".jpg";
     imwrite(output,export_folder+name);
     
     if showRendered
@@ -248,15 +249,17 @@ for frame = ceil(nFrames/3)+1:(ceil(nFrames/3)+ceil(2*nFrames/9))
     output = hsv2rgb(output);
     subplot(1,1,1);
 
+    % Creating frames with a consistent name, ordered in directory
     if frame < 10
-        name = "Frame_000"+frame+".png";
+        name = "Frame_000"+frame;
     elseif frame < 100
-        name = "Frame_00"+frame+".png";
+        name = "Frame_00"+frame;
     elseif frame < 1000
-        name = "Frame_0"+frame+".png";
+        name = "Frame_0"+frame;
     else
-        name = "Frame_"+frame+".png";
+        name = "Frame_"+frame;
     end
+    name = name+".jpg";
     imwrite(output,export_folder+name);
     
     if showRendered
@@ -321,15 +324,17 @@ for frame = ceil(5*nFrames/9)+1:(ceil(5*nFrames/9)+ceil(2*nFrames/9))
     output = hsv2rgb(output);
     subplot(1,1,1);
 
+    % Creating frames with a consistent name, ordered in directory
     if frame < 10
-        name = "Frame_000"+frame+".png";
+        name = "Frame_000"+frame;
     elseif frame < 100
-        name = "Frame_00"+frame+".png";
+        name = "Frame_00"+frame;
     elseif frame < 1000
-        name = "Frame_0"+frame+".png";
+        name = "Frame_0"+frame;
     else
-        name = "Frame_"+frame+".png";
+        name = "Frame_"+frame;
     end
+    name = name+".jpg";
     imwrite(output,export_folder+name);
 
     if showRendered
@@ -394,15 +399,17 @@ for frame = ceil(7*nFrames/9)+1:(ceil(7*nFrames/9)+ceil(2*nFrames/9))
     output = hsv2rgb(output);
     subplot(1,1,1);
 
+    % Creating frames with a consistent name, ordered in directory
     if frame < 10
-        name = "Frame_000"+frame+".png";
+        name = "Frame_000"+frame;
     elseif frame < 100
-        name = "Frame_00"+frame+".png";
+        name = "Frame_00"+frame;
     elseif frame < 1000
-        name = "Frame_0"+frame+".png";
+        name = "Frame_0"+frame;
     else
-        name = "Frame_"+frame+".png";
+        name = "Frame_"+frame;
     end
+    name = name+".jpg";
     imwrite(output,export_folder+name);
     
     if showRendered
