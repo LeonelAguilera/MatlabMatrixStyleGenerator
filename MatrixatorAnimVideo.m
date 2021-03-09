@@ -1,6 +1,7 @@
-function output = MatrixatorAnimVideo(ResX,ResY,TrailLen,colorA,colorB,nFrames,varargin)
+function output = MatrixatorAnimVideo(ResX,ResY,TrailLen,colorA,colorB,nFrames,ratios,varargin)
 showRendered = false;
-nVarargin = nargin - 6; % Dimension of varargin.
+ratios = ratios./sum(ratios);
+nVarargin = nargin - 7; % Dimension of varargin.
                         % Change so that for a given number of arguments, nVarargin has the correct value.
 export_folder = "Rendered_imgs\";
 % Checks:
@@ -119,7 +120,7 @@ if showRendered
     pause(0.1);
 end
 
-for frame = 2:ceil(nFrames/3)
+for frame = 2:ceil(nFrames*ratios(1))
     lineStart = Index*step-frame*step;
     lineEnd   = lineStart + step*(ResY-1);
     
@@ -193,7 +194,7 @@ for frame = 2:ceil(nFrames/3)
     end
 end
 
-for frame = ceil(nFrames/3)+1:(ceil(nFrames/3)+ceil(2*nFrames/9))
+for frame = ceil(nFrames*ratios(1))+1:ceil(nFrames*sum(ratios(1:2)))
     lineStart = Index*step-frame*step;
     lineEnd   = lineStart + step*(ResY-1);
     
@@ -268,7 +269,7 @@ for frame = ceil(nFrames/3)+1:(ceil(nFrames/3)+ceil(2*nFrames/9))
     end
 end
 
-for frame = ceil(5*nFrames/9)+1:(ceil(5*nFrames/9)+ceil(2*nFrames/9))
+for frame = ceil(nFrames*sum(ratios(1:2)))+1:ceil(nFrames*sum(ratios(1:3)))
     lineStart = Index*step-frame*step;
     lineEnd   = lineStart + step*(ResY-1);
     
@@ -343,7 +344,7 @@ for frame = ceil(5*nFrames/9)+1:(ceil(5*nFrames/9)+ceil(2*nFrames/9))
     end
 end
 
-for frame = ceil(7*nFrames/9)+1:(ceil(7*nFrames/9)+ceil(2*nFrames/9))
+for frame = ceil(nFrames*sum(ratios(1:3))):ceil(nFrames)
     lineStart = Index*step-frame*step;
     lineEnd   = lineStart + step*(ResY-1);
     
