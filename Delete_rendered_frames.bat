@@ -13,7 +13,7 @@ goto close
 :proceed
 @echo on
 cd Rendered_imgs
-del Frame_*.png
+del Frame_*.*
 echo Finished
 timeout /T 1
 goto close

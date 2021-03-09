@@ -12,7 +12,7 @@ goto close
 
 :proceed
 @echo on
-del Frame_*.png
+del Frame_*.*
 echo Finished
 pause
 goto close
