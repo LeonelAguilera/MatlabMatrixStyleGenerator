@@ -416,7 +416,7 @@ for i=1:(nVarargin)
 end
 
 if showRendered
-    pause(2);
+    pause(1);
     output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo)).*whitemap+(220/360).*(1-whitemap);
     output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo));%.*whitemap;
     output(:,:,3) = V;
@@ -425,7 +425,7 @@ if showRendered
     
     subplot(1,1,1);
     
-    imshow(output)
+    imshow(output);
     pause(0.1);
 end
 
