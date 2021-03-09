@@ -14,7 +14,7 @@ if nFrames>999 % Stop if user wants too many frames
     return;
 end
 if (exist(export_folder, "dir")~=7)
-    disp("Message. 'Rendered_imgs' isn't in current folder. Creatinf folder...");
+    disp("Message. '"+export_folder+"' isn't in current folder. Creatinf folder...");
     [status, msg] = mkdir("Rendered_imgs");
     if status==0 % This means folder couldn't be created
         disp("Error. Cannot create folder.");
