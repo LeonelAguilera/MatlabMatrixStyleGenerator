@@ -3,8 +3,8 @@
 # Exclude folder with character .png's
 /Caracteres/
 
-# Exclude Rendered_imgs
-/Rendered_imgs/
+# Exclude Rendered_imgs and other personalized
+/Rendered_*/
 
 # Exclude BittyPixMonospace.png
 /BittyPixMonospace.png
