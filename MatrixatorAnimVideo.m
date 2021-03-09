@@ -112,7 +112,7 @@ output(:,:,3) = V;
 
 output = hsv2rgb(output);
 if showRendered
-    imshow(output)
+    imshow(output);
     pause(0.1);
 end
 
@@ -185,7 +185,7 @@ for frame = 2:ceil(nFrames/3)
     imwrite(output,export_folder+name);
     
     if showRendered
-        imshow(output)
+        imshow(output);
         pause(0.1);
     end
 end
@@ -258,7 +258,7 @@ for frame = ceil(nFrames/3)+1:(ceil(nFrames/3)+ceil(2*nFrames/9))
     imwrite(output,export_folder+name);
     
     if showRendered
-        imshow(output)
+        imshow(output);
         pause(0.1);
     end
 end
@@ -331,7 +331,7 @@ for frame = ceil(5*nFrames/9)+1:(ceil(5*nFrames/9)+ceil(2*nFrames/9))
     imwrite(output,export_folder+name);
 
     if showRendered
-        imshow(output)
+        imshow(output);
         pause(0.1);
     end
 end
@@ -404,7 +404,7 @@ for frame = ceil(7*nFrames/9)+1:(ceil(7*nFrames/9)+ceil(2*nFrames/9))
     imwrite(output,export_folder+name);
     
     if showRendered
-        imshow(output)
+        imshow(output);
         pause(0.1);
     end
 end
