@@ -1,5 +1,4 @@
 function output = MatrixatorAnimVideo(ResX,ResY,TrailLen,colorA,colorB,nFrames,varargin)
-showRendered = false;
 nVarargin = nargin - 6; % Dimension of varargin.
                         % Change so that for a given number of arguments, nVarargin has the correct value.
 export_folder = "Rendered_imgs\";
@@ -111,10 +110,8 @@ output(:,:,3) = V;
 % output(:,:,3) = V;
 
 output = hsv2rgb(output);
-if showRendered
-    imshow(output)
-    pause(0.1);
-end
+imshow(output)
+pause(0.1);
 
 
 for frame = 2:ceil(nFrames/3)
@@ -171,6 +168,7 @@ for frame = 2:ceil(nFrames/3)
     
     output = hsv2rgb(output);
     subplot(1,1,1);
+    imshow(output)
     
     % Creating frames with a consistent name, ordered in directory
     if frame < 10
@@ -183,11 +181,7 @@ for frame = 2:ceil(nFrames/3)
         name = "Frame_"+frame+".png";
     end
     imwrite(output,export_folder+name);
-    
-    if showRendered
-        imshow(output)
-        pause(0.1);
-    end
+    pause(0.1);
 end
 
 for frame = ceil(nFrames/3)+1:(ceil(nFrames/3)+ceil(2*nFrames/9))
@@ -245,7 +239,7 @@ for frame = ceil(nFrames/3)+1:(ceil(nFrames/3)+ceil(2*nFrames/9))
     
     output = hsv2rgb(output);
     subplot(1,1,1);
-
+    imshow(output)
     if frame < 10
         name = "Frame_000"+frame+".png";
     elseif frame < 100
@@ -256,11 +250,7 @@ for frame = ceil(nFrames/3)+1:(ceil(nFrames/3)+ceil(2*nFrames/9))
         name = "Frame_"+frame+".png";
     end
     imwrite(output,export_folder+name);
-    
-    if showRendered
-        imshow(output)
-        pause(0.1);
-    end
+    pause(0.1);
 end
 
 for frame = ceil(5*nFrames/9)+1:(ceil(5*nFrames/9)+ceil(2*nFrames/9))
@@ -318,7 +308,7 @@ for frame = ceil(5*nFrames/9)+1:(ceil(5*nFrames/9)+ceil(2*nFrames/9))
     
     output = hsv2rgb(output);
     subplot(1,1,1);
-
+    imshow(output)
     if frame < 10
         name = "Frame_000"+frame+".png";
     elseif frame < 100
@@ -329,11 +319,7 @@ for frame = ceil(5*nFrames/9)+1:(ceil(5*nFrames/9)+ceil(2*nFrames/9))
         name = "Frame_"+frame+".png";
     end
     imwrite(output,export_folder+name);
-
-    if showRendered
-        imshow(output)
-        pause(0.1);
-    end
+    pause(0.1);
 end
 
 for frame = ceil(7*nFrames/9)+1:(ceil(7*nFrames/9)+ceil(2*nFrames/9))
@@ -391,7 +377,7 @@ for frame = ceil(7*nFrames/9)+1:(ceil(7*nFrames/9)+ceil(2*nFrames/9))
     
     output = hsv2rgb(output);
     subplot(1,1,1);
-
+    imshow(output)
     if frame < 10
         name = "Frame_000"+frame+".png";
     elseif frame < 100
@@ -402,11 +388,7 @@ for frame = ceil(7*nFrames/9)+1:(ceil(7*nFrames/9)+ceil(2*nFrames/9))
         name = "Frame_"+frame+".png";
     end
     imwrite(output,export_folder+name);
-    
-    if showRendered
-        imshow(output)
-        pause(0.1);
-    end
+    pause(0.1);
 end
 
 for i=1:(nVarargin)
@@ -415,18 +397,12 @@ for i=1:(nVarargin)
     H(mod(easterEggs{i,3}+frame,ResY)+1,easterEggs{i,2}+1:easterEggs{i,2}+size(easterEggs{i,1},2)) = 0;
 end
 
-if showRendered
-    pause(2);
-    output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo)).*whitemap+(220/360).*(1-whitemap);
-    output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo));%.*whitemap;
-    output(:,:,3) = V;
+pause(2);
+output(:,:,1) = imresize(kron(H,ones(9,7)),size(logo)).*whitemap+(220/360).*(1-whitemap);
+output(:,:,2) = imresize(kron(S,ones(9,7)),size(logo));%.*whitemap;
+output(:,:,3) = V;
 
-    output = hsv2rgb(output);
-    
-    subplot(1,1,1);
-    
-    imshow(output)
-    pause(0.1);
-end
-
+output = hsv2rgb(output);
+subplot(1,1,1);
+imshow(output)
 end
