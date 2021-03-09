@@ -3,7 +3,7 @@ showRendered = false;
 ratios = ratios./sum(ratios);
 nVarargin = nargin - 7; % Dimension of varargin.
                         % Change so that for a given number of arguments, nVarargin has the correct value.
-export_folder = "Rendered_imgs_TEST";
+export_folder = "Rendered_imgs";
 % Checks:
 if exist("Charloader", "File") ~= 2 % Stop if CharLoader is not found
     disp("Error. Cannot find Charloader script.");
@@ -50,13 +50,13 @@ end
 characters = CharLoader();
 
 % logo = 1-imresize(double(imread("Logo.png"))./255,[9*ResY,7*ResX]);
-logo = (double(imread("Logo9-16.png"))./255);
+logo = (double(imread("Logo.png"))./255);
 logo = logo(:,:,1);
-internet = double(imread("Internet9-16.png"))./255;
+internet = double(imread("Internet.png"))./255;
 internet = internet(:,:,1);
-desde = double(imread("Desde9-16.png"))./255;
+desde = double(imread("Desde.png"))./255;
 desde = desde(:,:,1);
-abajo = double(imread("Abajo9-16.png"))./255;
+abajo = double(imread("Abajo.png"))./255;
 abajo = abajo(:,:,1);
 
 % Mentioned logo, probably copy for other words
