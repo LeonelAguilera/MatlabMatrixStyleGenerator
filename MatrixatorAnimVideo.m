@@ -1,5 +1,5 @@
 function output = MatrixatorAnimVideo(ResX,ResY,TrailLen,colorA,colorB,nFrames,ratios,varargin)
-showRendered = false;
+showRendered = true;
 ratios = ratios./sum(ratios);
 nVarargin = nargin - 7; % Dimension of varargin.
                         % Change so that for a given number of arguments, nVarargin has the correct value.
@@ -155,12 +155,13 @@ for frame = 2:ceil(nFrames*ratios(1))
     
     %     H = imresize(H,size(logo));
     %     S = imresize(S,size(logo));
-    V = imresize(V,size(logo)); % Mentioned logo, probably copy for other words
+    tV = imresize(V,size(logo)); % Mentioned logo, probably copy for other words
+    V = imresize(V,size(logo),'nearest'); % Mentioned logo, probably copy for other words
     
 %     V = V.*logo;
     
-    pre = zeros(size(V));
-    pre(V>0)=1;
+    pre = zeros(size(tV));
+    pre(tV>0)=1;
     whitemap = max(whitemap - pre.*(1-logo),0); % Mentioned logo, probably copy for other words
 %     subplot(1,2,2);
 %     imshow(whitemap)
@@ -229,12 +230,13 @@ for frame = ceil(nFrames*ratios(1))+1:ceil(nFrames*sum(ratios(1:2)))
     
     %     H = imresize(H,size(logo));
     %     S = imresize(S,size(logo));
-    V = imresize(V,size(internet));
+    tV = imresize(V,size(internet));
+    V = imresize(V,size(internet),'nearest');
     
     %     V = V.*logo;
     
-    pre = zeros(size(V));
-    pre(V>((1/(frame-72))*((1/(frame-72))>0.1)))=1;
+    pre = zeros(size(tV));
+    pre(tV>((1/(frame-72))*((1/(frame-72))>0.1)))=1;
     whitemap = max(whitemap - pre.*(1-internet),0);
     whitemap = whitemap.*logo;
 %         subplot(1,2,2);
@@ -304,12 +306,13 @@ for frame = ceil(nFrames*sum(ratios(1:2)))+1:ceil(nFrames*sum(ratios(1:3)))
     
     %     H = imresize(H,size(logo));
     %     S = imresize(S,size(logo));
-    V = imresize(V,size(desde));
+    tV = imresize(V,size(desde));
+    V = imresize(V,size(desde),'nearest');
     
     %     V = V.*logo;
     
-    pre = zeros(size(V));
-    pre(V>((1/(frame-72))*((1/(frame-72))>0.1)))=1;
+    pre = zeros(size(tV));
+    pre(tV>((1/(frame-72))*((1/(frame-72))>0.1)))=1;
     whitemap = max(whitemap - pre.*(1-desde),0);
     whitemap = whitemap.*logo.*internet;
 %         subplot(1,2,2);
@@ -379,12 +382,13 @@ for frame = ceil(nFrames*sum(ratios(1:3))):ceil(nFrames)
     
     %     H = imresize(H,size(logo));
     %     S = imresize(S,size(logo));
-    V = imresize(V,size(abajo));
+    tV = imresize(V,size(abajo));
+    V = imresize(V,size(abajo),'nearest');
     
     %     V = V.*logo;
     
-    pre = zeros(size(V));
-    pre(V>((1/(frame-72))*((1/(frame-72))>0.1)))=1;
+    pre = zeros(size(tV));
+    pre(tV>((1/(frame-72))*((1/(frame-72))>0.1)))=1;
     whitemap = max(whitemap - pre.*(1-abajo),0);
     whitemap = whitemap.*logo.*internet.*desde;
 %         subplot(1,2,2);
@@ -438,8 +442,4 @@ if showRendered
     imshow(output);
     pause(0.1);
 end
-
-output = hsv2rgb(output);
-subplot(1,1,1);
-imshow(output)
 end
