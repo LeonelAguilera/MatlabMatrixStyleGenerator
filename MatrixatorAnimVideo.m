@@ -3,7 +3,7 @@ showRendered = false;
 ratios = ratios./sum(ratios);
 nVarargin = nargin - 7; % Dimension of varargin.
                         % Change so that for a given number of arguments, nVarargin has the correct value.
-export_folder = "Rendered_imgs\";
+export_folder = "Rendered_imgs_TEST";
 % Checks:
 if exist("Charloader", "File") ~= 2 % Stop if CharLoader is not found
     disp("Error. Cannot find Charloader script.");
@@ -15,7 +15,7 @@ if nFrames>999 % Stop if user wants too many frames
 end
 if (exist(export_folder, "dir")~=7)
     disp("Message. '"+export_folder+"' isn't in current folder. Creating folder...");
-    [status, msg] = mkdir("Rendered_imgs");
+    [status, msg] = mkdir(export_folder);
     if status==0 % This means folder couldn't be created
         disp("Error. Cannot create folder.");
         disp(msg);
